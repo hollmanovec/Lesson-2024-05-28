@@ -15,10 +15,10 @@ def make_transaction(amount):
     # Mezitím může jiné vlákno změnit hodnotu balance
     # a tím způsobit race condition
     time.sleep(0.1)
-    try:
-        balance = current_balance - amount
-    finally:
-        lock.release()
+
+    balance = current_balance - amount
+
+    lock.release()
 
 
 # Vytvoření dvou vláken pro provedení transakcí
